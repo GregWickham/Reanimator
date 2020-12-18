@@ -1,6 +1,6 @@
 ![Reanimator gloss](/images/ReanimatorGloss.jpg)
 
-**The world is full of old software, running all types of businesses in all types of industries.**
+**The world is full of legacy software, running all types of businesses in all types of industries.**
 
 In our personal lives we're all accustomed to smartphones, tablets, and cloud services; but if you step behind the counter in one of those businesses and look at the dusty 14 inch CRT used by the hourly employees, chances are you'll see something like this:
 
@@ -20,7 +20,12 @@ What if that business had a software adapter layer that could operate the user i
 
 You can use that ability to put new GUI skins on top of old functionalty, changing workflow or just updating the look and feel.  You can use it to add service endpoints to the old software, so its functionalty can be accessed from web portals, mobile devices, or whatever.  You can mine the data in the old system, and present it to users in a new way.
 
-Here are some examples of applications I've done with a software system called WDS-II:
+Here are some examples of applications I've done with a legacy system called WDS-II:
+
+### Point of Sale
 
 [![Point of Sale](http://img.youtube.com/vi/3t3N_ouGeCk/0.jpg)](http://www.youtube.com/watch?v=3t3N_ouGeCk "Point of Sale")
 
+### Counting inventory with speech recognition
+
+[![Counting Inventory](http://img.youtube.com/vi/ziy9DvCxrRc/0.jpg)](http://www.youtube.com/watch?v=ziy9DvCxrRc "Counting Inventory")
