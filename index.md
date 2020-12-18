@@ -12,4 +12,8 @@ Sure, all those employees have smartphones for their personal use.  They have ot
 
 The business owner probably chose that software package decades ago when it was state-of-the-art.  The business has grown up around that software.  The staff are trained and experienced in its use; and it's tightly integrated into their supply chain.  Most important, that software contains the mission-critical data that keeps the business running.  Replacing it would be costly and disruptive.  To the owner, ripping out that "obsolete" software and replacing it looks like a huge, expensive headache.
 
-At the same time, the owner is well aware that technology has moved on.
+At the same time, the owner is well aware that technology has moved on.  It would be great if they could integrate that old software with other, modern systems -- Ecommerce, mobile devices, web services, etc -- but they just don't know how.
+
+### Enter Reanimator
+
+
