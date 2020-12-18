@@ -14,7 +14,7 @@ The business owner probably chose that software package decades ago when it was 
 
 At the same time, the owner is well aware that technology has moved on.  It would be great if they could integrate that old software with other, modern systems -- Ecommerce, mobile devices, web services, etc -- but they just don't know how.
 
-### Reanimator
+## Reanimator
 
 What if that business had a software adapter layer that could operate the user interface of their old software, as if the old software had a rich developer API -- extracting data and exporting it to other systems, and performing the same functions that employees do when they use the software?  That's what **Reanimator** does.
 
@@ -29,3 +29,7 @@ Here are some examples of applications I've done with a legacy system called WDS
 ### Counting inventory with speech recognition
 
 [![Counting Inventory](http://img.youtube.com/vi/ziy9DvCxrRc/0.jpg)](http://www.youtube.com/watch?v=ziy9DvCxrRc "Counting Inventory")
+
+### Managing Stock Lists
+
+[![Managing Stock Lists](http://img.youtube.com/vi/2bcLmyh1NrA/0.jpg)](http://www.youtube.com/watch?v=2bcLmyh1NrA "Managing Stock Lists")
