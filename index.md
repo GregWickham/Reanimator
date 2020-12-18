@@ -55,6 +55,7 @@ The file called [03-04_Inquiry.cs](https://github.com/GregWickham/Reanimator/blo
 ![WDS-II screen for Accounts Receivable Inquiry](/images/AR_Inquiry1_Screen.jpg)
 
 This part of the static model:
+
 `
     public static readonly ConsoleDataFrame CustomerFrame = new ConsoleDataFrame
     {
@@ -68,6 +69,7 @@ This part of the static model:
 ... describes the fields on this screen from which we want to scrape data.  In this case the fields of interest are the ones containing the customer number, the customer name, and the customer's account balance.  The above description specifies where those fields can be found on the screen, the size of those fields, and what type of data will be found in those fields.
 
 This part of the static model:
+
 `
     static Inquiry_1()
     {
@@ -93,6 +95,7 @@ This part of the static model:
     public static readonly Menu MenuFor_AR_Inquiries = new Menu();`
     
 ... describes the screen as a state machine.  The states represent points in the WDS-II user interface at which the software is waiting for user input; I call such a state the "focus" of the console application.   The transitions in this state machine are triggered by user input events, which can be a keypress or a typed string terminated by a CR/LF.  For example, this declaration:
+
 `        
     MenuFor_AR_Inquiries
       .OnKey(Keys.P, PaymentsAndAdjustments.Menu)
@@ -101,7 +104,7 @@ This part of the static model:
       
  ... described a menu in the WDS-II user interface that can take three user inputs:
  
- # A keypress 'P' that causes a transition to the `PaymentsAndAdjustments.Menu`;
- # A keypress 'I' that causes a transition to the `Invoice.ResponseTo_ShowInvoices`; or
- # A keypress 'N' that causes a transition to the `PromptFor_CustomerID`.
+ * A keypress 'P' that causes a transition to the `PaymentsAndAdjustments.Menu`;
+ * A keypress 'I' that causes a transition to the `Invoice.ResponseTo_ShowInvoices`; or
+ * A keypress 'N' that causes a transition to the `PromptFor_CustomerID`.
     
