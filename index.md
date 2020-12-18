@@ -55,7 +55,6 @@ The file called [03-04_Inquiry.cs](https://github.com/GregWickham/Reanimator/blo
 ![WDS-II screen for Accounts Receivable Inquiry](/images/AR_Inquiry1_Screen.jpg)
 
 This part of the static model:
-
 ```
     public static readonly ConsoleDataFrame CustomerFrame = new ConsoleDataFrame
     {
@@ -94,9 +93,7 @@ This part of the static model:
         public static readonly Prompt PromptFor_CustomerID = new Prompt();
         public static readonly Menu MenuFor_AR_Inquiries = new Menu();
 ```
-    
 ... describes the screen as a state machine.  The states represent points in the WDS-II user interface at which the software is waiting for user input; I call such a state the "focus" of the console application.   The transitions in this state machine are triggered by user input events, which can be a keypress or a typed string terminated by a CR/LF.  For example, this declaration:
-
 ```        
         MenuFor_AR_Inquiries
           .OnKey(Keys.P, PaymentsAndAdjustments.Menu)
@@ -104,7 +101,7 @@ This part of the static model:
           .OnKey(Keys.N, PromptFor_CustomerID);
 ```
       
- ... described a menu in the WDS-II user interface that can take three user inputs:
+ ... describe2 a menu in the WDS-II user interface that can take three user inputs:
  
  * A keypress 'P' that causes a transition to the `PaymentsAndAdjustments.Menu`;
  * A keypress 'I' that causes a transition to the `Invoice.ResponseTo_ShowInvoices`; or
