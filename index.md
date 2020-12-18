@@ -99,11 +99,10 @@ This part of the static model:
           .OnKey(Keys.P, PaymentsAndAdjustments.Menu)
           .OnKey(Keys.I, Invoice.ResponseTo_ShowInvoices)
           .OnKey(Keys.N, PromptFor_CustomerID);
-```
-      
- ... describe2 a menu in the WDS-II user interface that can take three user inputs:
- 
- * A keypress 'P' that causes a transition to the `PaymentsAndAdjustments.Menu`;
- * A keypress 'I' that causes a transition to the `Invoice.ResponseTo_ShowInvoices`; or
- * A keypress 'N' that causes a transition to the `PromptFor_CustomerID`.
+```   
+... describes a menu in the WDS-II user interface that can take three user inputs:
+
+* A keypress 'P' that causes a transition to the `PaymentsAndAdjustments.Menu`;
+* A keypress 'I' that causes a transition to the `Invoice.ResponseTo_ShowInvoices`; or
+* A keypress 'N' that causes a transition to the `PromptFor_CustomerID`.
     
