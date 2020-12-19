@@ -139,7 +139,7 @@ public Task StartUp() => Task.Run(async () =>
 ```
 The first thing this `StartUp()` method does is obtain a `ConsoleApplicationSession` that will provide the context within which the Activity takes place:
 ```
-        inquirySession = await Session.GetAvailable(ActivityDescription);
+inquirySession = await Session.GetAvailable(ActivityDescription);
 ```
 When a new `ConsoleApplicationSession` is created, that session is at the starting point of the console application user interface, so it must navigate through the menu structure of the user interface to reach the appropriate place for the Activity to do its work:
 ```
