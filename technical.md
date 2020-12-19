@@ -61,7 +61,7 @@ public static readonly Message Message_ProgramPath = new Message();
 public static readonly Prompt PromptFor_CustomerID = new Prompt();
 public static readonly Menu MenuFor_AR_Inquiries = new Menu();
 ```
-... describes the screen's user interface behavior as a state machine.  The states represent points in the WDS-II user interface at which the console application is waiting for user input; I call such a state the current "focus" of the console application.  At any moment, the console application has at most one focus within a given session.
+... describes the screen's user interface behavior as a state machine.  The states represent points in the WDS-II user interface at which the console application is waiting for user input; I call such a state the current "focus" of the console application.  At any moment, the console application has at most one focus within a given session.  When the console application is in the middle of an operation, and *not* waiting for user input, it's not "in focus."
 
 These declarations from the above snippet describe the focus states for the `Inquiry_1` screen:
 ```
