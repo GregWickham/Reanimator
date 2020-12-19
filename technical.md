@@ -183,7 +183,7 @@ This means:  Find the data field called "Name" in the *in-context* data frame `c
 
 Now, back to the `LookupInvoicesForCustomer(string customerID)` method.  We've looked up the desired customer, and the `Focus` of `inquirySession` is the `Inquiry_1.MenuFor_AR_Inquiries`.  To get the invoices for the looked up customer, we respond to that menu with the keystroke 'I':
 ```
-Inquiry_1.MenuFor_AR_Inquiries.In(inquirySession).Press(Keys.P);
+Inquiry_1.MenuFor_AR_Inquiries.In(inquirySession).Choose(Keys.I);
 ```
 Now the console application begins displaying invoice records.  This particular console application will display as many invoice records as it can fit into the `paymentAndAdjustment` frame; then it pauses and waits for the user to hit 'N' before displaying more.  Reanimator reports these invoice records back to its client by looping over the items in the `paymentAndAdjustment` frame:
 ```
