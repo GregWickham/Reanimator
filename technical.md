@@ -62,43 +62,43 @@ public static readonly Menu MenuFor_AR_Inquiries = new Menu();
 
 These declarations in the above snippet describe the focus states for the `Inquiry_1` screen:
 ```
-        public static readonly Message Message_ProgramPath = new Message();
-        public static readonly Prompt PromptFor_CustomerID = new Prompt();
-        public static readonly Menu MenuFor_AR_Inquiries = new Menu();
+public static readonly Message Message_ProgramPath = new Message();
+public static readonly Prompt PromptFor_CustomerID = new Prompt();
+public static readonly Menu MenuFor_AR_Inquiries = new Menu();
 ```
 These statements describe how to recognize when the user interface is in each focus state:
 ```
-        Message_ProgramPath.Signature = Display.Input("ar/ar900.p");
-        PromptFor_CustomerID.Signature = Display.Input("Cust.").FollowedBy("End.");
-        MenuFor_AR_Inquiries.Signature = SignatureOf.Menu.Strip;
+Message_ProgramPath.Signature = Display.Input("ar/ar900.p");
+PromptFor_CustomerID.Signature = Display.Input("Cust.").FollowedBy("End.");
+MenuFor_AR_Inquiries.Signature = SignatureOf.Menu.Strip;
 ```
 The `Signature` of a state describes state and / or events of the console application that Reanimator can use to recognize when the its user interface has reached a given focus.  In most cases this description is straightforward, but occasionally the console application can behave in ways that require some ingenuity to uniquely identify its state.  Having dealt with many of these irregular cases, I've developed a formidable toolbox of Signature elements.  Here's a selection of Signature examples to illustrate the variety of things that Reanimator can recognize:
 ```
-        PromptFor_InvoiceDate.Signature = OnScreen.Text("Default for invoice date").At(1, 23);
+PromptFor_InvoiceDate.Signature = OnScreen.Text("Default for invoice date").At(1, 23);
 ```
 ```
-        Question_ConfirmVoid.Signature = OnScreen.Text("Are you SURE you want to VOID this order ? :").At(15, 16)
-            .FollowedBy(CursorIs.At(62, 16));
+Question_ConfirmVoid.Signature = OnScreen.Text("Are you SURE you want to VOID this order ? :").At(15, 16)
+    .FollowedBy(CursorIs.At(62, 16));
 ```
 ```
-        PromptFor_InvoiceNumber.Signature = CursorIs.ToTheRightOf("INVOICE#:").By(2);
+PromptFor_InvoiceNumber.Signature = CursorIs.ToTheRightOf("INVOICE#:").By(2);
 ```
 ```
-        PromptFor_LineNumber.Signature = OnScreen.Text("Enter Line #, 0 to find Item#, ? for Lookup, or F4 to End").At(0, 23)
-            .FollowedBy(CursorIs.InField("Line_Number").OfListFrame(Orders.LineItems.LineItemsFrame));
+PromptFor_LineNumber.Signature = OnScreen.Text("Enter Line #, 0 to find Item#, ? for Lookup, or F4 to End").At(0, 23)
+    .FollowedBy(CursorIs.InField("Line_Number").OfListFrame(Orders.LineItems.LineItemsFrame));
 ```
 ```
-        PromptFor_SelectLineItem.Signature = OnScreen.Text("Select Line Item, O for Options or F4 to cancel.").At(1, 23)
-            .FollowedBy(OnScreen.ListFrame(Orders.LineItems.LineItemsFrame).HasBackgroundColor(Color.Green).InField("Line_Number"));
+PromptFor_SelectLineItem.Signature = OnScreen.Text("Select Line Item, O for Options or F4 to cancel.").At(1, 23)
+    .FollowedBy(OnScreen.ListFrame(Orders.LineItems.LineItemsFrame).HasBackgroundColor(Color.Green).InField("Line_Number"));
 ```
 ```
-        PromptFor_CashAmount.Signature = OnScreen.ListFrame(TenderTypesFrame)
-            .ItemWithStringValue("CASH").InField("Tender_Type").HasBackgroundColor(Color.Green).InField("Amount");
+PromptFor_CashAmount.Signature = OnScreen.ListFrame(TenderTypesFrame)
+    .ItemWithStringValue("CASH").InField("Tender_Type").HasBackgroundColor(Color.Green).InField("Amount");
 ```
 ```
-        PromptFor_ItemNumber_WithRedraw.Signature = Display.Input("Item#")
-            .FollowedBy(OnScreen.Text("Enter Item# or press F2 for help explaining the other choices").At(0, 23))
-            .FollowedBy(CursorMoved.ToStartOfField("Item_Number").InAnyItemOfListFrame(LineItemsFrame));
+PromptFor_ItemNumber_WithRedraw.Signature = Display.Input("Item#")
+    .FollowedBy(OnScreen.Text("Enter Item# or press F2 for help explaining the other choices").At(0, 23))
+    .FollowedBy(CursorMoved.ToStartOfField("Item_Number").InAnyItemOfListFrame(LineItemsFrame));
 ```
 Handling the full variety of required Signatures, and providing a compact and expressive syntax for describing them, is one of the more difficult, innovative, and valuable aspects of the Reanimator framework.
 
@@ -108,10 +108,10 @@ Transitions in the Reanimator state machine are triggered by user input events, 
 
 For example, this declaration:
 ```        
-        MenuFor_AR_Inquiries
-          .OnKey(Keys.P, PaymentsAndAdjustments.Menu)
-          .OnKey(Keys.I, Invoice.ResponseTo_ShowInvoices)
-          .OnKey(Keys.N, PromptFor_CustomerID);
+MenuFor_AR_Inquiries
+  .OnKey(Keys.P, PaymentsAndAdjustments.Menu)
+  .OnKey(Keys.I, Invoice.ResponseTo_ShowInvoices)
+  .OnKey(Keys.N, PromptFor_CustomerID);
 ```   
 ... describes a menu in the WDS-II user interface that can take three user inputs:
 
