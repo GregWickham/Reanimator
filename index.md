@@ -38,6 +38,22 @@ Here are some examples of applications I've done with a legacy system called WDS
 
 [![Product Lookup From a Mobile Device](http://img.youtube.com/vi/tah2IuiGp5Q/0.jpg)](http://www.youtube.com/watch?v=tah2IuiGp5Q "Product Lookup From a Mobile Device")
 
+### What Else Is Going On In This Market?
+
+I haven't found a way to search Google for "legacy green-screen software systems and the companies that use them."  To me this seems like the core of the sales problem:  finding out what those systems are, and which companies are still using them.
+
+Having worked with WDS-II, I do know something about the ecosystem surrounding it.  Users of that system are supported by a handful of consulting companies that offer three things to their customers:
+1. Tech support for WDS-II;
+2. Updates to the language and database environment;
+3. Contract development services to rewrite applications.
+
+The companies I know of that offer WDS-II support are:
+* [Allegro Consultants](https://allegroconsultants.com/erp-applications/wds-ii)
+* [Integrated Business Technologies](http://www.ibtechs.com/)
+* [MD Pro Systems](https://www.mdprosystems.com/)
+
+[Zebra Technologies](https://www.zebra.com/us/en.html) specializes in barcode scanners
+
 ### The Consulting Business Model
 
 Business owners who can benefit from Reanimator are not interested in hiring a software team to do an integration with their legacy system.  They need somebody to do it for them.
