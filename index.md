@@ -8,7 +8,7 @@ In our personal lives we're all accustomed to smartphones, tablets, and cloud se
 
 Sure, all those employees have smartphones for their personal use.  Some of them are running business apps on their personal phones.  They have other computers in the back office, running web-enabled Windows applications.  **And yet** the software that tracks sales, inventory, accounting and payroll may not have changed in 20 or 30 years.
 
-**But why?**  Why haven't they ripped that out and replaced it with something modern?
+**But why?**  Why haven't they ripped out that old stuff and replaced it with something modern?
 
 The business owner probably chose that software package decades ago when it was state-of-the-art.  The business has grown up around that software.  The staff are trained and experienced in its use; and it's tightly integrated into their supply chain.  Most important, that software contains the mission-critical data that keeps the business running.  Replacing it would be costly and disruptive.  To the owner, ripping out that "obsolete" software and replacing it looks like a huge, expensive headache.
 
