@@ -44,7 +44,7 @@ In the discussion that follows, I'll refer to the legacy application as a "conso
 
 To integrate with a particular console application, there are two major steps:
 
-1.  Build a static model of the console application's user interface.  You don't need to model the **entire** user interface -- just the parts containig the functionality with which you want to integrate.
+1.  Build a static model of the console application's user interface.  You don't need to model the **entire** user interface -- just the parts containing the functionality you want to use.
 
 2.  Define one or more **Activities** that exercise the relevant parts of the console application's user interface, to accomplish the desired task.
 
@@ -93,7 +93,53 @@ This part of the static model:
         public static readonly Prompt PromptFor_CustomerID = new Prompt();
         public static readonly Menu MenuFor_AR_Inquiries = new Menu();
 ```
-... describes the screen as a state machine.  The states represent points in the WDS-II user interface at which the software is waiting for user input; I call such a state the "focus" of the console application.   The transitions in this state machine are triggered by user input events, which can be a keypress or a typed string terminated by a CR/LF.  For example, this declaration:
+... describes the screen's user interface behavior as a state machine.  The states represent points in the WDS-II user interface at which the console application is waiting for user input; I call such a state the current "focus" of the console application.  At any moment, the console application has at most one focus within a given session.
+
+These declarations in the above snippet describe the focus states for this screen:
+```
+        public static readonly Message Message_ProgramPath = new Message();
+        public static readonly Prompt PromptFor_CustomerID = new Prompt();
+        public static readonly Menu MenuFor_AR_Inquiries = new Menu();
+```
+These statements describe how to recognize when the user interface is in each focus state:
+```
+        Message_ProgramPath.Signature = Display.Input("ar/ar900.p");
+        PromptFor_CustomerID.Signature = Display.Input("Cust.").FollowedBy("End.");
+        MenuFor_AR_Inquiries.Signature = SignatureOf.Menu.Strip;
+```
+The `Signature` of a state describes state and / or events of the console application that Reanimator can use to recognize when the its user interface has reached a given focus.  In most cases this description is straightforward, but occasionally the console application can behave in ways that require some ingenuity to uniquely identify its state.  Having dealt with many of these irregular cases, I've developed a formidable toolbox of `Signature` elements.  Here's a selection of `Signature` examples to illustrate the variety of things that Reanimator can recognize:
+```
+        PromptFor_InvoiceDate.Signature = OnScreen.Text("Default for invoice date").At(1, 23);
+```
+```
+        Question_ConfirmVoid.Signature = OnScreen.Text("Are you SURE you want to VOID this order ? :").At(15, 16).FollowedBy(CursorIs.At(62, 16));
+```
+```
+        PromptFor_InvoiceNumber.Signature = CursorIs.ToTheRightOf("INVOICE#:").By(2);
+```
+```
+        PromptFor_LineNumber.Signature = OnScreen.Text("Enter Line #, 0 to find Item#, ? for Lookup, or F4 to End").At(0, 23)
+            .FollowedBy(CursorIs.InField("Line_Number").OfListFrame(Orders.LineItems.LineItemsFrame));
+```
+```
+        PromptFor_SelectLineItem.Signature = OnScreen.Text("Select Line Item, O for Options or F4 to cancel.").At(1, 23)
+            .FollowedBy(OnScreen.ListFrame(Orders.LineItems.LineItemsFrame).HasBackgroundColor(Color.Green).InField("Line_Number"));
+```
+```
+        PromptFor_CashAmount.Signature = OnScreen.ListFrame(TenderTypesFrame)
+            .ItemWithStringValue("CASH").InField("Tender_Type").HasBackgroundColor(Color.Green).InField("Amount");
+```
+```
+        PromptFor_ItemNumber_WithRedraw.Signature = Display.Input("Item#")
+            .FollowedBy(OnScreen.Text("Enter Item# or press F2 for help explaining the other choices").At(0, 23))
+            .FollowedBy(CursorMoved.ToStartOfField("Item_Number").InAnyItemOfListFrame(LineItemsFrame));
+```
+
+The transitions in the Reanimator state machine are triggered by user input events, which can be:
+* a keypress; or
+* a typed string terminated by a CR/LF.  
+
+For example, this declaration:
 ```        
         MenuFor_AR_Inquiries
           .OnKey(Keys.P, PaymentsAndAdjustments.Menu)
