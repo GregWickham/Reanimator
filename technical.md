@@ -169,7 +169,7 @@ The first thing we do is call the private method `GoToCustomer(string customerID
 ```
 This method does the following:
 1. Navigate to the console application's `PromptFor_CustomerID`.  When this statement completes, the `Focus` of `inquirySession` is `PromptFor_CustomerID`.
-2. Respond to `PromptFor_CustomerID` by typing `customerID` into the console application and pressing Enter.  When this statement completes, the console application has looked up the customer and displayed that customer's information on the screen.  Now that customer information can be scraped.
+2. Respond to `PromptFor_CustomerID` by typing `customerID` into the console application and pressing Enter.  When this statement completes, the console application has looked up the customer and displayed that customer's information on the screen.  Because it's on the screen, now the customer information can be scraped.
 3. Report the looked-up `CustomerName` to the Windows GUI by assigning it to the `ItemDescription` property of the session.  This causes the name to be displayed at the appropriate places in the client GUI.
 
 The `CustomerName` property looks like this:
