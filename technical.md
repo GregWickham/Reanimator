@@ -6,9 +6,9 @@ In the technical discussion that follows, I'll refer to the legacy application a
 
 To integrate with a particular console application, there are two major steps:
 
-1.  Build a *static* model of the console application's user interface.  You don't need to model the **entire** user interface -- just the parts containing the functionality you want to use.
+1.  Build a *static model* of the console application's user interface.  You don't need to model the **entire** user interface -- just the parts containing the functionality you want to use.
 
-2.  Define one or more **Activities** that exercise the relevant parts of the console application's user interface to accomplish the desired task.  Activities represent a *dynamic* model of the console application's user interface.  An Activity navigates through the static model by simulating user input events; and extracts data from the console application by scraping the screen.
+2.  Define one or more **Activities** that exercise the relevant parts of the console application's user interface to accomplish the desired task.  Activities represent a *dynamic model* of the console application's user interface.  An Activity navigates through the static model by simulating user input events; and extracts data from the console application by scraping the screen.
 
 The [Reanimator GitHub repo](https://github.com/GregWickham/Reanimator) contains two C# code files that illustrate how this is done.
 
