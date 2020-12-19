@@ -6,7 +6,7 @@ In our personal lives we're all accustomed to smartphones, tablets, and cloud se
 
 ![WDS-II screen capture](/images/WDS_II_example.jpg)
 
-Sure, all those employees have smartphones for their personal use.  Some have apps on their phones that are for business use.  They have other computers in the back office, running web-enabled Windows applications.  Yet the software that tracks their sales, inventory, accounting and payroll may not have changed in 20 or 30 years.
+Sure, all those employees have smartphones for their personal use.  Some have apps on their phones that are for business use.  They have other computers in the back office, running web-enabled Windows applications.  **And yet** the software that tracks their sales, inventory, accounting and payroll may not have changed in 20 or 30 years.
 
 **But why?**  Why haven't they ripped that out and replaced it with something modern?
 
