@@ -33,7 +33,7 @@ public static readonly ConsoleDataFrame CustomerFrame = new ConsoleDataFrame
 ```
 ... describes the fields on this screen from which we want to scrape data.  In this case the fields of interest are the ones containing the customer number, the customer name, and the customer's account balance.  The above description specifies:
 * where those fields can be found on the screen; 
-* the size of those fields; and 
+* the size of the fields; and 
 * what type of data will be found in those fields.
 
 This part of the static model:
