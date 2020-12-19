@@ -220,7 +220,7 @@ foreach (ConsoleDataFrame.Context item in paymentAndAdjustment.Items)
     }
 }
 ```
-For each invoice in the displayed list we scrape the data fields of interest, and report those field values by raising the `AdjustedInvoiceLookedUp` and `AdjustmentLookedUp` events as appropriate.  Then we hit the 'N' key to display another page of invoices:
+For each invoice or adjustment in the displayed list we scrape the data fields of interest, and report those field values by raising the `AdjustedInvoiceLookedUp` and `AdjustmentLookedUp` events as appropriate.  Then we hit the 'N' key to display another page of invoices:
 ```
 Inquiry_1.Invoice.Menu.In(inquirySession).Choose(Keys.N);
 ```
