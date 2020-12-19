@@ -68,7 +68,7 @@ In all these cases, users are trapped between two options they don't like:
 
 ### The Consulting Business Model
 
-Business owners who can benefit from Reanimator are not interested in hiring a software team to do an integration with their legacy system.  They need somebody to do it for them.
+Business owners who can benefit from Reanimator are generally not interested in hiring a software team to do an integration with their legacy system.  They need somebody to do it for them.
 
 The Reanimator software framework is finished, tested, and ready to go.  **All it needs now is customers.**  I don't have the skills or the desire to do marketing and sales, but if you do and you're interested, please get in touch!
 
