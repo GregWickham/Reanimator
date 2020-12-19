@@ -42,7 +42,7 @@ Here are some examples of applications I've done with a legacy system called WDS
 
 Business owners who can benefit from Reanimator are not interested in hiring a software team to do an integration with their legacy system.  They need somebody to do it for them.
 
-The Reanimator software framework is finished, tested, and ready to go.  All it needs now is clients.  I don't have the skills or the desire to do marketing and sales, but if you do and you're interested, please get in touch!
+The Reanimator software framework is finished, tested, and ready to go.  **All it needs now is clients.**  I don't have the skills or the desire to do marketing and sales, but if you do and you're interested, please get in touch!
 
 Integrating Reanimator with a new legacy system involves writing some code, but it does **not** require the people who write that code to know all the details of the framework underneath.  They only need to be competent with .NET and C#.  If a marketing team were able to generate enough clients to require more development manpower, it would be relatively easy to hire those people or contract out the work.
 
