@@ -2,11 +2,11 @@
 
 **The world is full of legacy software, running all types of businesses in all types of industries.**
 
-In our personal lives we're all accustomed to smartphones, tablets, and cloud services; but if you step behind the counter in one of those businesses and look at the dusty 14 inch CRT used by the hourly employees, chances are you'll see something like this:
+In our personal lives we're all accustomed to smartphones, tablets, and cloud services; but if you step behind the counter in one of those businesses and look at the dusty 14 inch CRT used by the hourly employees, you just might see something like this:
 
 ![WDS-II screen capture](/images/WDS_II_example.jpg)
 
-Sure, all those employees have smartphones for their personal use.  They have other computers in the back office, running web-enabled Windows applications.  Yet the software that tracks their sales, inventory, accounting and payroll may not have changed in 20 or 30 years.
+Sure, all those employees have smartphones for their personal use.  Some have apps on their phones that are for business use.  They have other computers in the back office, running web-enabled Windows applications.  Yet the software that tracks their sales, inventory, accounting and payroll may not have changed in 20 or 30 years.
 
 **But why?**  Why haven't they ripped that out and replaced it with something modern?
 
@@ -110,7 +110,7 @@ These statements describe how to recognize when the user interface is in each fo
         PromptFor_CustomerID.Signature = Display.Input("Cust.").FollowedBy("End.");
         MenuFor_AR_Inquiries.Signature = SignatureOf.Menu.Strip;
 ```
-The `Signature` of a state describes state and / or events of the console application that Reanimator can use to recognize when the its user interface has reached a given focus.  In most cases this description is straightforward, but occasionally the console application can behave in ways that require some ingenuity to uniquely identify its state.  Having dealt with many of these irregular cases, I've developed a formidable toolbox of `Signature` elements.  Here's a selection of `Signature` examples to illustrate the variety of things that Reanimator can recognize:
+The `Signature` of a state describes state and / or events of the console application that Reanimator can use to recognize when the its user interface has reached a given focus.  In most cases this description is straightforward, but occasionally the console application can behave in ways that require some ingenuity to uniquely identify its state.  Having dealt with many of these irregular cases, I've developed a formidable toolbox of Signature elements.  Here's a selection of Signature examples to illustrate the variety of things that Reanimator can recognize:
 ```
         PromptFor_InvoiceDate.Signature = OnScreen.Text("Default for invoice date").At(1, 23);
 ```
@@ -138,7 +138,7 @@ The `Signature` of a state describes state and / or events of the console applic
             .FollowedBy(OnScreen.Text("Enter Item# or press F2 for help explaining the other choices").At(0, 23))
             .FollowedBy(CursorMoved.ToStartOfField("Item_Number").InAnyItemOfListFrame(LineItemsFrame));
 ```
-Handling the full variety of required `Signature`s, and providing a compact and expressive syntax for describing them, is one of the more difficult, innovative, and valuable aspects of the Reanimator framework.
+Handling the full variety of required Signatures, and providing a compact and expressive syntax for describing them, is one of the more difficult, innovative, and valuable aspects of the Reanimator framework.
 
 Transitions in the Reanimator state machine are triggered by user input events, which can be:
 * a keypress; or
@@ -159,12 +159,11 @@ For example, this declaration:
     
 ## The Dynamic Model
 
-Once a static model is defined, we can create a dynamic model that brings it to life.  Every `Activity` takes place within the context of a `ConsoleApplicationSession`, which simulates a user connected to the console application through an ANSI terminal.
+Once a static model is defined, we can create a dynamic model that brings it to life.  Every Activity takes place within the context of a `ConsoleApplicationSession`, which simulates a user connected to the console application through an ANSI terminal.
 
 As we go through some of the code in [AccountsReceivableInquiry_1.cs](https://github.com/GregWickham/Reanimator/blob/master/AccountsReceivableInquiry_1.cs), you'll see the method `In(inquirySession)` several times.  This method is invoked on an element of the *static model*, and it returns an object representing that static element *in the context of a particular session.*  This provides a compact syntax for expressing actions and state not in the abstract, but *at a specific place and time.*
 
-Most Activities implement a method called `StartUp()`:
-The first thing an `Activity` must do is obtain 
+Most Activities implement a method called `StartUp()`: 
 ```
         public Task StartUp() => Task.Run(async () =>
         {
@@ -176,11 +175,11 @@ The first thing an `Activity` must do is obtain
             invoices = Inquiry_1.Invoice.InvoicesFrame.In(inquirySession);
         });
 ```
-The first thing this `StartUp()` method does is obtain a `ConsoleApplicationSession` that will provide the context within which the `Activity` takes place:
+The first thing this `StartUp()` method does is obtain a `ConsoleApplicationSession` that will provide the context within which the Activity takes place:
 ```
         inquirySession = await Session.GetAvailable(ActivityDescription);
 ```
-When a new `ConsoleApplicationSession` is created, that session is at the starting point of the console application user interface, so it must navigate through the menu structure of the user interface to reach the appropriate place for this `Activity` to do its work:
+When a new `ConsoleApplicationSession` is created, that session is at the starting point of the console application user interface, so it must navigate through the menu structure of the user interface to reach the appropriate place for the Activity to do its work:
 ```
         inquirySession.NavigateTo(Inquiry_1.PromptFor_CustomerID);
 ```
@@ -192,3 +191,6 @@ Then we instantiate *in-context* versions of several user interface elements tha
         invoices = Inquiry_1.Invoice.InvoicesFrame.In(inquirySession);
 ```
 Once these *in-context* objects are available, we'll be able to query them to scrape data from the screen of the console application.
+
+Now that the Activity is started up, it's ready to do some work.  The standard pattern is for an Activity to implement `public` methods with a return type of `Task` that expose its functionality to client code.  This pattern is not mandatory; it just happens to work well for most things.  The client that calls this exposed functionality could be anything -- a Windows user interface, a .NET API, a REST endpoint, whatever.
+
