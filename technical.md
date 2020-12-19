@@ -60,7 +60,7 @@ public static readonly Menu MenuFor_AR_Inquiries = new Menu();
 ```
 ... describes the screen's user interface behavior as a state machine.  The states represent points in the WDS-II user interface at which the console application is waiting for user input; I call such a state the current "focus" of the console application.  At any moment, the console application has at most one focus within a given session.
 
-These declarations in the above snippet describe the focus states for the `Inquiry_1` screen:
+These declarations from the above snippet describe the focus states for the `Inquiry_1` screen:
 ```
 public static readonly Message Message_ProgramPath = new Message();
 public static readonly Prompt PromptFor_CustomerID = new Prompt();
@@ -127,15 +127,15 @@ As we go through some of the code in [AccountsReceivableInquiry_1.cs](https://gi
 
 Most Activities implement a method called `StartUp()`: 
 ```
-        public Task StartUp() => Task.Run(async () =>
-        {
-            inquirySession = await Session.GetAvailable(ActivityDescription);
-            inquirySession.NavigateTo(Inquiry_1.PromptFor_CustomerID);
-            customer = Inquiry_1.CustomerFrame.In(inquirySession);
-            customerNumber = customer.StringFieldNamed("Customer_Number");
-            paymentAndAdjustment = Inquiry_1.PaymentsAndAdjustments.PaymentsFrame.In(inquirySession);
-            invoices = Inquiry_1.Invoice.InvoicesFrame.In(inquirySession);
-        });
+public Task StartUp() => Task.Run(async () =>
+{
+    inquirySession = await Session.GetAvailable(ActivityDescription);
+    inquirySession.NavigateTo(Inquiry_1.PromptFor_CustomerID);
+    customer = Inquiry_1.CustomerFrame.In(inquirySession);
+    customerNumber = customer.StringFieldNamed("Customer_Number");
+    paymentAndAdjustment = Inquiry_1.PaymentsAndAdjustments.PaymentsFrame.In(inquirySession);
+    invoices = Inquiry_1.Invoice.InvoicesFrame.In(inquirySession);
+});
 ```
 The first thing this `StartUp()` method does is obtain a `ConsoleApplicationSession` that will provide the context within which the Activity takes place:
 ```
@@ -143,14 +143,14 @@ The first thing this `StartUp()` method does is obtain a `ConsoleApplicationSess
 ```
 When a new `ConsoleApplicationSession` is created, that session is at the starting point of the console application user interface, so it must navigate through the menu structure of the user interface to reach the appropriate place for the Activity to do its work:
 ```
-        inquirySession.NavigateTo(Inquiry_1.PromptFor_CustomerID);
+inquirySession.NavigateTo(Inquiry_1.PromptFor_CustomerID);
 ```
 Then we instantiate *in-context* versions of several user interface elements that we'll need, using the `In(inquirySession)` method:
 ```
-        customer = Inquiry_1.CustomerFrame.In(inquirySession);
-        customerNumber = customer.StringFieldNamed("Customer_Number");
-        paymentAndAdjustment = Inquiry_1.PaymentsAndAdjustments.PaymentsFrame.In(inquirySession);
-        invoices = Inquiry_1.Invoice.InvoicesFrame.In(inquirySession);
+customer = Inquiry_1.CustomerFrame.In(inquirySession);
+customerNumber = customer.StringFieldNamed("Customer_Number");
+paymentAndAdjustment = Inquiry_1.PaymentsAndAdjustments.PaymentsFrame.In(inquirySession);
+invoices = Inquiry_1.Invoice.InvoicesFrame.In(inquirySession);
 ```
 Once these *in-context* objects are available, we'll be able to query them to scrape data from the screen of the console application.
 
@@ -160,12 +160,12 @@ As an example of what an Activity can do, let's look inside the method `LookupIn
 
 The first thing we do is call the private method `GoToCustomer(string customerID)`:
 ```
-        private void GoToCustomer(string customerID)
-        {
-            inquirySession.NavigateTo(Inquiry_1.PromptFor_CustomerID);
-            Inquiry_1.PromptFor_CustomerID.In(inquirySession).Respond(customerID);
-            inquirySession.ItemDescription = CustomerName;
-        }
+private void GoToCustomer(string customerID)
+{
+    inquirySession.NavigateTo(Inquiry_1.PromptFor_CustomerID);
+    Inquiry_1.PromptFor_CustomerID.In(inquirySession).Respond(customerID);
+    inquirySession.ItemDescription = CustomerName;
+}
 ```
 This method does the following:
 1. Navigate to the console application's `PromptFor_CustomerID`.  When this statement completes, the `Focus` of `inquirySession` is `PromptFor_CustomerID`.
@@ -174,54 +174,54 @@ This method does the following:
 
 The `CustomerName` property looks like this:
 ```
-        public string CustomerName => customer.ValueOf<string>("Name");
+public string CustomerName => customer.ValueOf<string>("Name");
 ```
 This means:  Find the data field called "Name" in the *in-context* data frame `customer`, scrape the value from that data field, and return it as a `string`.
 
 Now, back to the `LookupInvoicesForCustomer(string customerID)` method.  We've looked up the desired customer, and the `Focus` of `inquirySession` is the `Inquiry_1.MenuFor_AR_Inquiries`.  To get the invoices for the looked up customer, we respond to that menu with the keystroke 'I':
 ```
-        Inquiry_1.MenuFor_AR_Inquiries.In(inquirySession).Press(Keys.P);
+Inquiry_1.MenuFor_AR_Inquiries.In(inquirySession).Press(Keys.P);
 ```
 Now the console application begins displaying invoice records.  This particular console application will display as many invoice records as it can fit into the `paymentAndAdjustment` frame; then it pauses and waits for the user to hit 'N' before displaying more.  Reanimator reports these invoice records back to its client by looping over the items in the `paymentAndAdjustment` frame:
 ```
-        foreach (ConsoleDataFrame.Context item in paymentAndAdjustment.Items)
+foreach (ConsoleDataFrame.Context item in paymentAndAdjustment.Items)
+{
+    string itemNumber = item.ValueOf<string>("Item_Number");
+    if (itemNumber == null)
+    {   // It's a separator
+        OnInvoiceSeparator();
+    }
+    else
+    {   // It's either an invoice or an adjustment.  All the fields are the same in either case, EXCEPT for the item number
+        DateTime date = item.ValueOf<DateTime>("Date");
+        if (date < startDate)
         {
-            string itemNumber = item.ValueOf<string>("Item_Number");
-            if (itemNumber == null)
-            {   // It's a separator
-                OnInvoiceSeparator();
-            }
-            else
-            {   // It's either an invoice or an adjustment.  All the fields are the same in either case, EXCEPT for the item number
-                DateTime date = item.ValueOf<DateTime>("Date");
-                if (date < startDate)
-                {
-                    startDateReached = true;
-                    break;
-                }
-
-                decimal amount = item.ValueOf<decimal>("Amount");
-                decimal balanceDue = item.ValueOf<decimal>("Balance_Due");
-
-                if (itemNumber.StartsWith("  "))
-                {   // It's an adjustment                                
-                    string referenceNumber = itemNumber.TrimStart();
-                    string description = item.ValueOf<string>("Description");
-                    OnAdjustmentLookedUp(referenceNumber, date, amount, description, balanceDue);
-                }
-                else
-                {   // It's an invoice   
-                    string invoiceNumber = itemNumber;
-                    OnAdjustedInvoiceLookedUp(invoiceNumber, date, amount, balanceDue);
-                }
-            }
+            startDateReached = true;
+            break;
         }
+
+        decimal amount = item.ValueOf<decimal>("Amount");
+        decimal balanceDue = item.ValueOf<decimal>("Balance_Due");
+
+        if (itemNumber.StartsWith("  "))
+        {   // It's an adjustment                                
+            string referenceNumber = itemNumber.TrimStart();
+            string description = item.ValueOf<string>("Description");
+            OnAdjustmentLookedUp(referenceNumber, date, amount, description, balanceDue);
+        }
+        else
+        {   // It's an invoice   
+            string invoiceNumber = itemNumber;
+            OnAdjustedInvoiceLookedUp(invoiceNumber, date, amount, balanceDue);
+        }
+    }
+}
 ```
 For each invoice in the displayed list we scrape the data fields of interest, and report those field values by raising the `AdjustedInvoiceLookedUp` and `AdjustmentLookedUp` events as appropriate.  Then we hit the 'N' key to display another page of invoices:
 ```
-        Inquiry_1.Invoice.Menu.In(inquirySession).Choose(Keys.N);
+Inquiry_1.Invoice.Menu.In(inquirySession).Choose(Keys.N);
 ```
 After the console application has returned all the invoices, we fall out of the `endReached` while loop and the `Focus` of `inquirySession` is `Inquiry_1.Invoice.Menu`.  To return to the `MenuFor_AR_Inquiries`, we respond to this menu by hitting the 'E' key:
 ```
-        Inquiry_1.Invoice.Menu.In(inquirySession).Choose(Keys.E);
+Inquiry_1.Invoice.Menu.In(inquirySession).Choose(Keys.E);
 ```
