@@ -56,7 +56,7 @@ The companies I know of that offer WDS-II support are:
 
 [![Zebra All-Touch TE](http://img.youtube.com/vi/gx-21ga6hYQ/0.jpg)](http://www.youtube.com/watch?v=gx-21ga6hYQ "Zebra All-Touch TE")
 
-This Zebra product is an improvement, but it just presents the same old green-screen user interface on a mobile device.  With Reanimator, it's possible to do much better.
+This Zebra product is an improvement, but it really just presents the same old green-screen user interface on a mobile device.  With Reanimator, it's possible to do much better.
 
 Quoting Daniel Park in the Zebra video:  "We've found that our warehousing and DC (distribution center) customers have been slower to move to modern Android devices.  Generally it's because they don't want to touch their back-end warehouse management system."
 
