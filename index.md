@@ -50,6 +50,8 @@ To integrate with a particular console application, there are two major steps:
 
 The [Reanimator GitHub repo](https://github.com/GregWickham/Reanimator) contains two C# code files that illustrate how this is done.
 
+### The Static Model
+
 The file called [03-04_Inquiry.cs](https://github.com/GregWickham/Reanimator/blob/master/03-04_Inquiry.cs) contains the static description of a WDS-II screen used for retrieving a customer's account information.  Here's what that screen looks like in WDS-II:
 
 ![WDS-II screen for Accounts Receivable Inquiry](/images/AR_Inquiry1_Screen.jpg)
@@ -65,7 +67,6 @@ This part of the static model:
         .AddField("Name", new StringField(36), new Point(17, 0))
         .AddField("Balance", new DecimalField(13), new Point(66, 0));
 ```
-
 ... describes the fields on this screen from which we want to scrape data.  In this case the fields of interest are the ones containing the customer number, the customer name, and the customer's account balance.  The above description specifies where those fields can be found on the screen, the size of those fields, and what type of data will be found in those fields.
 
 This part of the static model:
@@ -95,7 +96,7 @@ This part of the static model:
 ```
 ... describes the screen's user interface behavior as a state machine.  The states represent points in the WDS-II user interface at which the console application is waiting for user input; I call such a state the current "focus" of the console application.  At any moment, the console application has at most one focus within a given session.
 
-These declarations in the above snippet describe the focus states for this screen:
+These declarations in the above snippet describe the focus states for the `Inquiry_1` screen:
 ```
         public static readonly Message Message_ProgramPath = new Message();
         public static readonly Prompt PromptFor_CustomerID = new Prompt();
@@ -134,6 +135,8 @@ The `Signature` of a state describes state and / or events of the console applic
             .FollowedBy(OnScreen.Text("Enter Item# or press F2 for help explaining the other choices").At(0, 23))
             .FollowedBy(CursorMoved.ToStartOfField("Item_Number").InAnyItemOfListFrame(LineItemsFrame));
 ```
+Handling the full variety of required `Signature`s, and providing a compact and expressive syntax for describing them, is one of the more difficult, innovative, and valuable aspects of the Reanimator framework.
+
 Transitions in the Reanimator state machine are triggered by user input events, which can be:
 * a keypress; or
 * a typed string terminated by a CR/LF.  
