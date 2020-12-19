@@ -62,7 +62,9 @@ Quoting Daniel Park in the Zebra video:  "We've found that our warehousing and D
 
 In all these cases, users are trapped between two options they don't like:
 1.  Keep doing things the same way they've always been done; or
-2.  Rewrite the old software at great expense
+2.  Rewrite the old software at great expense.
+
+**They need a third option.**
 
 ### The Consulting Business Model
 
