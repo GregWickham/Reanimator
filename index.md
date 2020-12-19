@@ -52,7 +52,15 @@ The companies I know of that offer WDS-II support are:
 * [Integrated Business Technologies](http://www.ibtechs.com/)
 * [MD Pro Systems](https://www.mdprosystems.com/)
 
-[Zebra Technologies](https://www.zebra.com/us/en.html) specializes in barcode scanners
+[Zebra Technologies](https://www.zebra.com/us/en.html) specializes in barcode scanners, and has a lot of customers in the warehousing / distribution business.  In an effort to integrate modern mobile devices into this industry, they've introduced a product that lets you operate a legacy software system from an Android device:
+
+[![Zebra All-Touch TE](http://img.youtube.com/vi/gx-21ga6hYQ/0.jpg)](http://www.youtube.com/watch?v=gx-21ga6hYQ "Zebra All-Touch TE")
+
+Quoting Daniel Park in the Zebra video:  "We've found that our warehousing and DC (distribution center) customers have been slower to move to modern Android devices.  Generally it's because they don't want to touch their back-end warehouse management system."
+
+In all these cases, users are trapped between two options they don't like:
+1.  Keep doing things the same way they've always been done; or
+2.  Rewrite the old software at great expense
 
 ### The Consulting Business Model
 
