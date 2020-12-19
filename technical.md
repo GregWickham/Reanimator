@@ -35,28 +35,28 @@ public static readonly ConsoleDataFrame CustomerFrame = new ConsoleDataFrame
 
 This part of the static model:
 ```
-        static Inquiry_1()
-        {
-            Close = Unwind.ToJustBefore(Message_ProgramPath);
-            Message_ProgramPath.Signature = Display.Input("ar/ar900.p");
-            PromptFor_CustomerID.Signature = Display.Input("Cust.").FollowedBy("End.");
-            MenuFor_AR_Inquiries.Signature = SignatureOf.Menu.Strip;
+static Inquiry_1()
+{
+    Close = Unwind.ToJustBefore(Message_ProgramPath);
+    Message_ProgramPath.Signature = Display.Input("ar/ar900.p");
+    PromptFor_CustomerID.Signature = Display.Input("Cust.").FollowedBy("End.");
+    MenuFor_AR_Inquiries.Signature = SignatureOf.Menu.Strip;
 
-            Message_ProgramPath
-                .AutoProceedWith(Keys.Space, PromptFor_CustomerID);
-            PromptFor_CustomerID
-                .OnKey(Keys.F4, Close)
-                .OnResponse(e => MenuFor_AR_Inquiries);
-            MenuFor_AR_Inquiries
-                .OnKey(Keys.P, PaymentsAndAdjustments.Menu)
-                .OnKey(Keys.I, Invoice.ResponseTo_ShowInvoices)
-                .OnKey(Keys.N, PromptFor_CustomerID);
-        }
+    Message_ProgramPath
+        .AutoProceedWith(Keys.Space, PromptFor_CustomerID);
+    PromptFor_CustomerID
+        .OnKey(Keys.F4, Close)
+        .OnResponse(e => MenuFor_AR_Inquiries);
+    MenuFor_AR_Inquiries
+        .OnKey(Keys.P, PaymentsAndAdjustments.Menu)
+        .OnKey(Keys.I, Invoice.ResponseTo_ShowInvoices)
+        .OnKey(Keys.N, PromptFor_CustomerID);
+}
 
-        private static readonly Unwind Close;
-        public static readonly Message Message_ProgramPath = new Message();
-        public static readonly Prompt PromptFor_CustomerID = new Prompt();
-        public static readonly Menu MenuFor_AR_Inquiries = new Menu();
+private static readonly Unwind Close;
+public static readonly Message Message_ProgramPath = new Message();
+public static readonly Prompt PromptFor_CustomerID = new Prompt();
+public static readonly Menu MenuFor_AR_Inquiries = new Menu();
 ```
 ... describes the screen's user interface behavior as a state machine.  The states represent points in the WDS-II user interface at which the console application is waiting for user input; I call such a state the current "focus" of the console application.  At any moment, the console application has at most one focus within a given session.
 
