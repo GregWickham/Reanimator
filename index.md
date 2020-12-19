@@ -40,7 +40,7 @@ Here are some examples of applications I've done with a legacy system called WDS
 
 ### What Else Is Going On In This Market?
 
-I haven't found a way to search Google for "legacy green-screen software systems and the companies that use them."  To me this seems like the core of the sales problem:  finding out what those systems are, and which companies are still using them.
+I haven't found a way to search Google for **"legacy green-screen software systems and the companies that use them."**  To me this seems like the core of the sales problem:  finding out what those systems are, and which companies are still using them.
 
 Having worked with WDS-II, I do know something about the ecosystem surrounding it.  Users of that system are supported by a handful of consulting companies that offer three things to their customers:
 1. Tech support for WDS-II;
