@@ -38,7 +38,7 @@ Here are some examples of applications I've done with a legacy system called WDS
 
 [![Product Lookup From a Mobile Device](http://img.youtube.com/vi/tah2IuiGp5Q/0.jpg)](http://www.youtube.com/watch?v=tah2IuiGp5Q "Product Lookup From a Mobile Device")
 
-## The Consulting Business Model
+### The Consulting Business Model
 
 Business owners who can benefit from Reanimator are not interested in hiring a software team to do an integration with their legacy system.  They need somebody to do it for them.
 
@@ -48,11 +48,11 @@ Integrating Reanimator with a new legacy system involves writing some code, but 
 
 The [technical section](technical.md) gives a fairly detailed explanation of the type of code that must be written to do a new integration.
 
-## The Software Tool Business Model
+### The Software Tool Business Model
 
 The process of doing new integrations could be made even easier by turning Reanimator into a Visual Studio VSIX extension, which could be sold to developers who want to "franchise" the integration process.  I've started work on this extension, but it's not ready to be shipped.
 
-## The Technology Behind Reanimator
+### The Technology Behind Reanimator
 
 If you're a software person and you want to know more about how Reanimator works, you can check out the [technical section](technical.md) of this site.
 
