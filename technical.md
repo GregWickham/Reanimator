@@ -1,3 +1,5 @@
+![Reanimator gloss](/images/ReanimatorGloss.jpg)
+
 # How Does Reanimator Work?
 
 In the technical discussion that follows, I'll refer to the legacy application as a "console application."  This type of application has a non-GUI, character-based user interface on a screen that's most often 80 x 24 characters, though other resolutions are possible.
