@@ -38,6 +38,7 @@ Here are some examples of applications I've done with a legacy system called WDS
 
 [![Product Lookup From a Mobile Device](http://img.youtube.com/vi/tah2IuiGp5Q/0.jpg)](http://www.youtube.com/watch?v=tah2IuiGp5Q "Product Lookup From a Mobile Device")
 
+If you're a software person and you want to know more about how Reanimator works, you can check out the [technical page](technical.md) of this site
 # How Does It Work?
 
 In the technical discussion that follows, I'll refer to the legacy application as a "console application."  This type of application has a non-GUI, character-based user interface on a screen that's most often 80 x 24 characters, though other resolutions are possible.
