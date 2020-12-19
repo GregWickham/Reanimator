@@ -12,7 +12,7 @@ To integrate with a particular console application, there are two major steps:
 
 The [Reanimator GitHub repo](https://github.com/GregWickham/Reanimator) contains two C# code files that illustrate how this is done.
 
-## The Static Model
+### The Static Model
 
 The static model provides an abstract, *context-free* description of the console application's user interface.  Rather than describing what the user interface is actually doing at a moment in time, the static model describes what the user interface is hypothetically *capable* of doing.
 
@@ -122,7 +122,7 @@ MenuFor_AR_Inquiries
 * A keypress 'I' that causes a transition to `Invoice.ResponseTo_ShowInvoices`; or
 * A keypress 'N' that causes a transition to the `PromptFor_CustomerID`.
     
-## The Dynamic Model
+### The Dynamic Model
 
 Once a static model is defined, we can create a dynamic model that brings it to life.  Every Activity takes place within the context of a `ConsoleApplicationSession`, which simulates a user connected to the console application through an ANSI terminal.
 
