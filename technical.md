@@ -109,7 +109,7 @@ Transitions in the Reanimator state machine are triggered by user input events, 
 * a keypress; or
 * a typed string terminated by a CR/LF.  
 
-For example, this declaration:
+For example, this statement:
 ```        
 MenuFor_AR_Inquiries
   .OnKey(Keys.P, PaymentsAndAdjustments.Menu)
