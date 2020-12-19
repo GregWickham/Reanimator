@@ -40,7 +40,7 @@ Here are some examples of applications I've done with a legacy system called WDS
 
 # How Does It Work?
 
-In the discussion that follows, I'll refer to the legacy application as a "console application."  This type of application has a non-GUI, character based user interface on a screen that's most often 80 x 24 characters, although other resolutions are possible.
+In the discussion that follows, I'll refer to the legacy application as a "console application."  This type of application has a non-GUI, character-based user interface on a screen that's most often 80 x 24 characters, though other resolutions are possible.
 
 To integrate with a particular console application, there are two major steps:
 
