@@ -75,7 +75,7 @@ Message_ProgramPath.Signature = Display.Input("ar/ar900.p");
 PromptFor_CustomerID.Signature = Display.Input("Cust.").FollowedBy("End.");
 MenuFor_AR_Inquiries.Signature = SignatureOf.Menu.Strip;
 ```
-The `Signature` of a state describes state and / or events of the console application that Reanimator can use to recognize when the its user interface has reached a given focus.  In most cases this description is straightforward, but occasionally the console application can behave in ways that require some ingenuity to uniquely identify its state.  Having dealt with many of these irregular cases, I've developed a formidable toolbox of Signature elements.  Here's a selection of Signature examples to illustrate the variety of things that Reanimator can recognize:
+The `Signature` of a state describes state and / or events of the console application that Reanimator can use to recognize when the console application's user interface has reached a given focus.  In most cases this description is straightforward, but occasionally the console application can behave in ways that require some ingenuity to uniquely identify its state.  Having dealt with many of these irregular cases, I've developed a formidable toolbox of Signature elements.  Here's a selection of Signature examples to illustrate the variety of things that Reanimator can recognize:
 ```
 PromptFor_InvoiceDate.Signature = OnScreen.Text("Default for invoice date").At(1, 23);
 ```
