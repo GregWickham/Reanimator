@@ -50,7 +50,9 @@ To integrate with a particular console application, there are two major steps:
 
 The [Reanimator GitHub repo](https://github.com/GregWickham/Reanimator) contains two C# code files that illustrate how this is done.
 
-### The Static Model
+## The Static Model
+
+The static model provides an abstract, *context-free* description of the console application's user interface.  Rather than describing what the user interface is actually doing at a moment in time, the static model describes what the user interface is hypothetically *capable* of doing.
 
 The file called [03-04_Inquiry.cs](https://github.com/GregWickham/Reanimator/blob/master/03-04_Inquiry.cs) contains the static description of a WDS-II screen used for retrieving a customer's account information.  Here's what that screen looks like in WDS-II:
 
@@ -113,7 +115,8 @@ The `Signature` of a state describes state and / or events of the console applic
         PromptFor_InvoiceDate.Signature = OnScreen.Text("Default for invoice date").At(1, 23);
 ```
 ```
-        Question_ConfirmVoid.Signature = OnScreen.Text("Are you SURE you want to VOID this order ? :").At(15, 16).FollowedBy(CursorIs.At(62, 16));
+        Question_ConfirmVoid.Signature = OnScreen.Text("Are you SURE you want to VOID this order ? :").At(15, 16)
+            .FollowedBy(CursorIs.At(62, 16));
 ```
 ```
         PromptFor_InvoiceNumber.Signature = CursorIs.ToTheRightOf("INVOICE#:").By(2);
@@ -151,6 +154,41 @@ For example, this declaration:
 ... describes a menu in the WDS-II user interface that can take three user inputs:
 
 * A keypress 'P' that causes a transition to the `PaymentsAndAdjustments.Menu`;
-* A keypress 'I' that causes a transition to the `Invoice.ResponseTo_ShowInvoices`; or
+* A keypress 'I' that causes a transition to `Invoice.ResponseTo_ShowInvoices`; or
 * A keypress 'N' that causes a transition to the `PromptFor_CustomerID`.
     
+## The Dynamic Model
+
+Once a static model is defined, we can create a dynamic model that brings it to life.  Every `Activity` takes place within the context of a `ConsoleApplicationSession`, which simulates a user connected to the console application through an ANSI terminal.
+
+As we go through some of the code in [AccountsReceivableInquiry_1.cs](https://github.com/GregWickham/Reanimator/blob/master/AccountsReceivableInquiry_1.cs), you'll see the method `In(inquirySession)` several times.  This method is invoked on an element of the *static model*, and it returns an object representing that static element *in the context of a particular session.*  This provides a compact syntax for expressing actions and state not in the abstract, but *at a specific place and time.*
+
+Most Activities implement a method called `StartUp()`:
+The first thing an `Activity` must do is obtain 
+```
+        public Task StartUp() => Task.Run(async () =>
+        {
+            inquirySession = await Session.GetAvailable(ActivityDescription);
+            inquirySession.NavigateTo(Inquiry_1.PromptFor_CustomerID);
+            customer = Inquiry_1.CustomerFrame.In(inquirySession);
+            customerNumber = customer.StringFieldNamed("Customer_Number");
+            paymentAndAdjustment = Inquiry_1.PaymentsAndAdjustments.PaymentsFrame.In(inquirySession);
+            invoices = Inquiry_1.Invoice.InvoicesFrame.In(inquirySession);
+        });
+```
+The first thing this `StartUp()` method does is obtain a `ConsoleApplicationSession` that will provide the context within which the `Activity` takes place:
+```
+        inquirySession = await Session.GetAvailable(ActivityDescription);
+```
+When a new `ConsoleApplicationSession` is created, that session is at the starting point of the console application user interface, so it must navigate through the menu structure of the user interface to reach the appropriate place for this `Activity` to do its work:
+```
+        inquirySession.NavigateTo(Inquiry_1.PromptFor_CustomerID);
+```
+Then we instantiate *in-context* versions of several user interface elements that we'll need, using the `In(inquirySession)` method:
+```
+        customer = Inquiry_1.CustomerFrame.In(inquirySession);
+        customerNumber = customer.StringFieldNamed("Customer_Number");
+        paymentAndAdjustment = Inquiry_1.PaymentsAndAdjustments.PaymentsFrame.In(inquirySession);
+        invoices = Inquiry_1.Invoice.InvoicesFrame.In(inquirySession);
+```
+Once these *in-context* objects are available, we'll be able to query them to scrape data from the screen of the console application.
