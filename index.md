@@ -16,9 +16,9 @@ At the same time, the owner is well aware that technology has moved on.  It woul
 
 # Reanimator
 
-What if that business had a software adapter layer that could operate the user interface of their old software, as if the old software had a rich developer API -- extracting data and exporting it to other systems, performing the same functions that employees do when they use the software?  That's what **Reanimator** does.
+What if that business had a software adapter layer that could operate the user interface of their legacy software, as if that old software had a rich developer API -- extracting data and exporting it to other systems, performing the same functions that employees do when they use the software?  That's what **Reanimator** does.
 
-You can use that ability to put new GUI skins on top of old functionalty, changing workflow or just updating the look and feel.  You can add service endpoints to the old software, so its functionalty can be accessed from web portals, mobile devices, or whatever.  You can mine the data in the old system, and present it to users in a new way.
+You can use that ability to put new GUI skins on top of old functionalty, changing workflow or just updating the look and feel.  You can add service endpoints to the old software, so its functionalty can be accessed through web portals, mobile devices, or whatever.  You can mine the data in the old system, and present it to users in a new way.
 
 Here are some examples of applications I've done with a legacy system called WDS-II:
 
@@ -40,7 +40,7 @@ Here are some examples of applications I've done with a legacy system called WDS
 
 # How Does It Work?
 
-In the discussion that follows, I'll refer to the legacy application as a "console application."  This type of application has a non-GUI, character-based user interface on a screen that's most often 80 x 24 characters, though other resolutions are possible.
+In the technical discussion that follows, I'll refer to the legacy application as a "console application."  This type of application has a non-GUI, character-based user interface on a screen that's most often 80 x 24 characters, though other resolutions are possible.
 
 To integrate with a particular console application, there are two major steps:
 
