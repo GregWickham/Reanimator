@@ -34,7 +34,7 @@ Here are some examples of applications I've done with a legacy system called WDS
 
 [![Managing Stock Lists](http://img.youtube.com/vi/2bcLmyh1NrA/0.jpg)](http://www.youtube.com/watch?v=2bcLmyh1NrA "Managing Stock Lists")
 
-### Product Lookup From a Mobile Device
+### Product lookup from a mobile device
 
 [![Product Lookup From a Mobile Device](http://img.youtube.com/vi/tah2IuiGp5Q/0.jpg)](http://www.youtube.com/watch?v=tah2IuiGp5Q "Product Lookup From a Mobile Device")
 
