@@ -181,7 +181,7 @@ The `CustomerName` property looks like this:
 ```
 public string CustomerName => customer.ValueOf<string>("Name");
 ```
-This means:  Find the data field called "Name" in the *in-context* data frame `customer`, scrape the value from that data field, and return it as a `string`.
+This means:  Find the data field called "Name" in the in-context data frame `customer`, scrape the value from that data field, and return it as a `string`.
 
 Now, back to the `LookupInvoicesForCustomer(string customerID)` method.  We've looked up the desired customer, and the `Focus` of `inquirySession` is the `Inquiry_1.MenuFor_AR_Inquiries`.  To get the invoices for the looked up customer, we respond to that menu with the keystroke 'I':
 ```
