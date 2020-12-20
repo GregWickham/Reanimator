@@ -148,7 +148,9 @@ When a new `ConsoleApplicationSession` is created, that session is at the starti
 ```
 inquirySession.NavigateTo(Inquiry_1.PromptFor_CustomerID);
 ```
-Then we instantiate *in-context* versions of several user interface elements that we'll need, using the `In(inquirySession)` method:
+With a single statement, Reanimator is able to navigate from the current focus of the console application to any other target focus, because the static model contains a "road map" leading to the destination.  The Reanimator engine searches the road map for the shortest path, and follows that path through a sequence of hops having the form *User Event -> New Focus*.
+
+Having arrived at the appropriate place in the console application user interface, we next instantiate *in-context* versions of several user interface elements that we'll need for the Activity, using the `In(inquirySession)` method:
 ```
 customer = Inquiry_1.CustomerFrame.In(inquirySession);
 customerNumber = customer.StringFieldNamed("Customer_Number");
