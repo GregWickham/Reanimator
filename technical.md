@@ -159,7 +159,7 @@ invoices = Inquiry_1.Invoice.InvoicesFrame.In(inquirySession);
 ```
 Once these *in-context* objects are available, we'll be able to query them to scrape data from the screen of the console application.
 
-Now that the Activity is started up, it's ready to do some work.  The standard pattern for an Activity to expose its functionality to client code is to implement `public` methods with a return type of `Task`.  This pattern is not mandatory; it just happens to work well for most things.  The client that calls this exposed functionality could be anything -- a Windows user interface, a .NET API, a REST endpoint, whatever.
+Now that the Activity is started up, it's ready to do some work.  The standard pattern for an Activity to expose its functionality is to implement `public` methods with a return type of `Task`.  This pattern is not mandatory; it just happens to work well for most things.  The client that calls this exposed functionality could be anything -- a Windows user interface, a .NET API, a REST endpoint, whatever.
 
 As an example of what an Activity can do, let's look inside the method `LookupInvoicesForCustomer(string customerID)`.  The client is asking for a list of invoices for the customer with customer number `customerID`.
 
