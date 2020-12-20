@@ -126,7 +126,7 @@ MenuFor_AR_Inquiries
 
 Once a static model is defined, we can create a dynamic model that brings it to life.  Every Activity takes place within the context of a `ConsoleApplicationSession`, which simulates a user connected to the console application through an ANSI terminal.
 
-As we go through some of the code in [AccountsReceivableInquiry_1.cs](https://github.com/GregWickham/Reanimator/blob/master/AccountsReceivableInquiry_1.cs), you'll see the method `In(inquirySession)` several times.  This method is invoked on an element of the *static model*, and it returns an object representing that static element *in the context of a particular session.*  This provides a compact syntax for expressing actions and state not in the abstract, but *at a specific place and time.*
+As we go through some of the code in [AccountsReceivableInquiry_1.cs](https://github.com/GregWickham/Reanimator/blob/master/AccountsReceivableInquiry_1.cs), you'll see the method `In(inquirySession)` several times.  This method is invoked on an element of the static model, and it returns an object representing that static element *in the context of a particular session.*  This provides a compact syntax for expressing actions and state not in the abstract, but *at a specific place and time.*
 
 Most Activities implement a method called `StartUp()`: 
 ```
@@ -157,7 +157,7 @@ customerNumber = customer.StringFieldNamed("Customer_Number");
 paymentAndAdjustment = Inquiry_1.PaymentsAndAdjustments.PaymentsFrame.In(inquirySession);
 invoices = Inquiry_1.Invoice.InvoicesFrame.In(inquirySession);
 ```
-Once these *in-context* objects are available, we'll be able to query them to scrape data from the screen of the console application.
+Once these in-context objects are available, we'll be able to query them to scrape data from the screen of the console application.
 
 Now that the Activity is started up, it's ready to do some work.  The standard pattern for an Activity to expose its functionality is to implement `public` methods with a return type of `Task`.  This pattern is not mandatory; it just happens to work well for most things.  The client that calls this exposed functionality could be anything -- a Windows user interface, a .NET API, a REST endpoint, whatever.
 
