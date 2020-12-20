@@ -76,7 +76,7 @@ Integrating Reanimator with a new legacy system involves writing some code, but 
 
 The [technical section](technical.md) gives a fairly detailed explanation of the type of code that must be written to do a new integration.
 
-### The Software Tool Business Model
+### The Developer Tool Business Model
 
 The process of doing new integrations could be made even easier by turning Reanimator into a Visual Studio VSIX extension, which could be sold to developers who want to "franchise" the integration process.  I've started work on this extension, but it's not ready to be shipped.
 
